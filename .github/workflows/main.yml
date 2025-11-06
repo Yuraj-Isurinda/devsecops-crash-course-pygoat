@@ -24,7 +24,7 @@ jobs:
 
   # for saving reports
     - name: Upload artifact
-      uses: actions/upload-artifcat@v3
+      uses: actions/upload-artifact@v3
       if: always()
       with: 
         name: bandit-findings
