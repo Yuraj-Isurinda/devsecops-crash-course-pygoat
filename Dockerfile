@@ -7,10 +7,12 @@ WORKDIR /app
 # dependencies for psycopg2
 RUN apt-get update && \
     apt-get install --no-install-recommends -y \
-    dnsutils \
-    libpq-dev \
-    && apt-get clean \
+      build-essential \
+      gcc \
+      libpq-dev \
+      dnsutils \
     && rm -rf /var/lib/apt/lists/*
+
 
 
 # Set environment variables
@@ -31,7 +33,7 @@ COPY . /app/
 # install pygoat
 EXPOSE 8000
 
-
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 RUN python3 /app/manage.py migrate
 WORKDIR /app/pygoat/
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers","6", "pygoat.wsgi"]
