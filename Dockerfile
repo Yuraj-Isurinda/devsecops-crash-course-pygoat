@@ -10,6 +10,7 @@ RUN apt-get update && \
     dnsutils \
     libpq-dev \
     gcc \
+    python3-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
